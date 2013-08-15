@@ -182,6 +182,7 @@
         [self sendStatusMessage:[NSString stringWithFormat:@"Failed to stop the bus. %@",[AJNStatus descriptionForStatusCode:status]]];
         @throw [NSException exceptionWithName:@"AJNClientController::stop: Failed" reason:@"Failed to stop the bus" userInfo:nil];
     }
+    [self.bus waitUntilStopCompleted];
     [self sendStatusMessage:@"Bus stopped successfully."];
     
     // let our proxy object deallocate

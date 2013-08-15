@@ -410,7 +410,9 @@
                 
                 [byteArrayArg setValue:@"ay", self.performanceStatistics.packetSize, byteArray];
                 
-                [self.proxyObject checkPacketAtIndex:[NSNumber numberWithInt:i] payLoad:byteArrayArg packetSize:[NSNumber numberWithInt:self.performanceStatistics.packetSize]];
+                if(![self.proxyObject checkPacketAtIndex:[NSNumber numberWithInt:i] payLoad:byteArrayArg packetSize:[NSNumber numberWithInt:self.performanceStatistics.packetSize]]){
+                    break;
+                }
                 
                 free(byteArray);
                 
