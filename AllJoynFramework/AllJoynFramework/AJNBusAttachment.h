@@ -720,6 +720,22 @@ typedef void (^ AJNLinkTimeoutBlock)(QStatus status, uint32_t timeout, void *con
 - (QStatus)leaveSession:(AJNSessionId)sessionId;
 
 /**
+ * Remove a member from an existing multipoint session.
+ * This function may be called by the binder of the session to forcefully remove a member from a session.
+ *
+ * This method is a shortcut/helper that issues an org.alljoyn.Bus.RemoveSessionMember method call to the local
+ * daemon and interprets the response.
+ *
+ * @param  sessionId     Session id.
+ * @param  memberName    Member to remove.
+ *
+ * @return  - #ER_OK iff daemon response was received and the remove member operation was successfully completed.
+ *          - #ER_BUS_NOT_CONNECTED if a connection has not been made with a local bus.
+ *          - Other error status codes indicating a failure.
+ */
+- (QStatus)removeSessionMember:(AJNSessionId)sessionId withName:(NSString *)memberName;
+
+/**
  * Set the link timeout for a session.
  *
  * Link timeout is the maximum number of seconds that an unresponsive daemon-to-daemon connection

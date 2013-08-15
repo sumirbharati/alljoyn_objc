@@ -704,6 +704,15 @@ public:
     return status;    
 }
 
+- (QStatus)removeSessionMember:(AJNSessionId)sessionId withName:(NSString *)memberName
+{
+    QStatus status = self.busAttachment->RemoveSessionMember(sessionId, [memberName UTF8String]);
+    if (status != ER_OK) {
+        NSLog(@"ERROR: AJNBusAttachment::RemoveSessionMember: failed. %@", [AJNStatus descriptionForStatusCode:status]);
+    }
+    return status;
+}
+
 - (QStatus)setLinkTimeout:(uint32_t*)timeout forSession:(AJNSessionId)sessionId
 {
     QStatus status = self.busAttachment->SetLinkTimeout(sessionId, *timeout);
