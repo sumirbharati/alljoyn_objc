@@ -455,7 +455,6 @@
 				ACB44E6115485F3E00FF7DBC /* Sources */,
 				ACB44E6215485F3E00FF7DBC /* Frameworks */,
 				ACB44E6315485F3E00FF7DBC /* Resources */,
-				ACB44E6415485F3E00FF7DBC /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -520,19 +519,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "/usr/local/bin/appledoc \\\n--project-name \"AllJoynFramework\" \\\n--project-company \"Qualcomm Innovation Center, Inc.\" \\\n--company-id com.quicinc \\\n--output ~/help \\\n--logformat xcode \\\n--keep-undocumented-objects \\\n--keep-undocumented-members \\\n--no-repeat-first-par \\\n--exit-threshold 2 \\\n--ignore .m \\\n--ignore AllJoynFrameworkTests \\\n--templates \"~/Library/Application Support/appledoc/Templates\" \\\n\"${SRCROOT}\"";
-		};
-		ACB44E6415485F3E00FF7DBC /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
