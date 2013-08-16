@@ -84,6 +84,11 @@
     return self.interfaceDescription->HasProperties() ? YES : NO;
 }
 
+- (AJNInterfaceSecurityPolicy) securityPolicy
+{
+    return (AJNInterfaceSecurityPolicy)self.interfaceDescription->GetSecurityPolicy();
+}
+
 - (QStatus)addMethodWithName:(NSString*)methodName inputSignature:(NSString*)inputSignature outputSignature:(NSString*)outputSignature argumentNames:(NSArray*)arguments annotation:(AJNInterfaceAnnotationFlags)annotation accessPermissions:(NSString*)accessPermissions
 {
     QStatus result = ER_OK;

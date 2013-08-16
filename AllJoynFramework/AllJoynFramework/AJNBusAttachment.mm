@@ -510,7 +510,12 @@ public:
 
 - (QStatus)registerBusObject:(AJNBusObject*)busObject
 {
-    QStatus status = self.busAttachment->RegisterBusObject(*((ajn::BusObject*)busObject.handle));
+    return [self registerBusObject:busObject enableSecurity:NO];
+}
+
+- (QStatus) registerBusObject:(AJNBusObject *) busObject enableSecurity:(BOOL)shouldEnableSecurity
+{
+    QStatus status = self.busAttachment->RegisterBusObject(*((ajn::BusObject*)busObject.handle), shouldEnableSecurity);
     if (status != ER_OK) {
         NSLog(@"ERROR: AJNBusAttachment::registerBusObject failed. %@", [AJNStatus descriptionForStatusCode:status]);
     }

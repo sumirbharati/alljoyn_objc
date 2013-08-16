@@ -144,6 +144,13 @@
 @property (nonatomic, readonly) BOOL isValid;
 
 /**
+ * Indicates if the remote object for this proxy bus object is secure.
+ *
+ * @return  true if the object is secure
+ */
+@property (nonatomic, readonly) BOOL isSecure;
+
+/**
  * Create an empty proxy object that refers to an object at given remote service name. Note
  * that the created proxy object does not contain information about the interfaces that the
  * actual remote object implements with the exception that org.freedesktop.DBus.Peer
@@ -161,6 +168,27 @@
  * @param sessionId      The session id the be used for communicating with remote object.
  */
 - (id)initWithBusAttachment:(AJNBusAttachment *)busAttachment serviceName:(NSString *)serviceName objectPath:(NSString *)path sessionId:(AJNSessionId)sessionId;
+
+/**
+ * Create an empty proxy object that refers to an object at given remote service name. Note
+ * that the created proxy object does not contain information about the interfaces that the
+ * actual remote object implements with the exception that org.freedesktop.DBus.Peer
+ * interface is special-cased (per the DBus spec) and can always be called on any object. Nor
+ * does it contain information about the child objects that the actual remote object might
+ * contain. The security mode can be specified if known or can be derived from the XML
+ * description.
+ *
+ * To fill in this object with the interfaces and child object names that the actual remote
+ * object describes in its introspection data, call IntrospectRemoteObject() or
+ * IntrospectRemoteObjectAsync().
+ *
+ * @param bus        The bus.
+ * @param service    The remote service name (well-known or unique).
+ * @param path       The absolute (non-relative) object path for the remote object.
+ * @param sessionId  The session id the be used for communicating with remote object.
+ * @param shouldEnableSecurity     The security mode for the remote object.
+ */
+- (id)initWithBusAttachment:(AJNBusAttachment *)busAttachment serviceName:(NSString *)serviceName objectPath:(NSString *)path sessionId:(AJNSessionId)sessionId enableSecurity:(BOOL)shouldEnableSecurity;
 
 /**
  * Add an existing interface to this object using the interface's name.

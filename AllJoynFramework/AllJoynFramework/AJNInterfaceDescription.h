@@ -68,6 +68,28 @@
 @property (readonly, nonatomic) BOOL hasProperties;
 
 /**
+ * The interface security policy can be inherit, required, or off. If security is
+ * required on an interface, methods on that interface can only be called by an authenticated peer
+ * and signals emitted from that interfaces can only be received by an authenticated peer. If
+ * security is not specified for an interface the interface inherits the security of the objects
+ * that implement it.  If security is not applicable to an interface authentication is never
+ * required even when the implemented by a secure object. For example, security does not apply to
+ * the Introspection interface otherwise secure objects would not be introspectable.
+ */
+typedef enum{
+    AJ_IFC_SECURITY_INHERIT,       /**< Inherit the security of the object that implements the interface */
+    AJ_IFC_SECURITY_REQUIRED,      /**< Security is required for an interface */
+    AJ_IFC_SECURITY_OFF            /**< Security does not apply to this interface */
+}AJNInterfaceSecurityPolicy;
+
+/**
+ * Get the security policy that applies to this interface.
+ *
+ * @return Returns the security policy for this interface.
+ */
+@property (readonly, nonatomic) AJNInterfaceSecurityPolicy securityPolicy;
+
+/**
  * Add a method call member to the interface.
  *
  * @param methodName        Name of method call member.

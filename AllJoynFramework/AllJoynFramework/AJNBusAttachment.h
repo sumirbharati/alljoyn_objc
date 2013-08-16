@@ -348,6 +348,19 @@ typedef void (^ AJNLinkTimeoutBlock)(QStatus status, uint32_t timeout, void *con
  */
 - (QStatus)registerBusObject:(AJNBusObject *)busObject;
 
+
+/**
+ * Register a BusObject
+ *
+ * @param obj      BusObject to register.
+ * @param shouldEnableSecurity   true if authentication is required to access this object.
+ *
+ * @return
+ *      - #ER_OK if successful.
+ *      - #ER_BUS_BAD_OBJ_PATH for a bad object path
+ */
+- (QStatus) registerBusObject:(AJNBusObject *) busObject enableSecurity:(BOOL)shouldEnableSecurity;
+
 /**
  * Unregister a BusObject
  *

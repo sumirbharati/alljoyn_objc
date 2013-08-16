@@ -232,6 +232,11 @@ using namespace ajn;
     return self.proxyBusObject->IsValid() ? YES : NO;
 }
 
+- (BOOL)isSecure
+{
+    return self.proxyBusObject->IsSecure() ? YES : NO;
+}
+
 /**
  * Helper to return the C++ API object that is encapsulated by this objective-c class
  */
@@ -242,10 +247,15 @@ using namespace ajn;
 
 - (id)initWithBusAttachment:(AJNBusAttachment*)busAttachment serviceName:(NSString*)serviceName objectPath:(NSString*)path sessionId:(AJNSessionId)sessionId
 {
+    return [self initWithBusAttachment:busAttachment serviceName:serviceName objectPath:path sessionId:sessionId enableSecurity:NO];
+}
+
+- (id)initWithBusAttachment:(AJNBusAttachment *)busAttachment serviceName:(NSString *)serviceName objectPath:(NSString *)path sessionId:(AJNSessionId)sessionId enableSecurity:(BOOL)shouldEnableSecurity
+{
     self = [super init];
     if (self) {
         self.bus = busAttachment;
-        self.handle = new ProxyBusObject(*((BusAttachment*)busAttachment.handle), [serviceName UTF8String], [path UTF8String], sessionId);
+        self.handle = new ProxyBusObject(*((BusAttachment*)busAttachment.handle), [serviceName UTF8String], [path UTF8String], sessionId, shouldEnableSecurity);
     }
     return self;
 }

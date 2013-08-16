@@ -45,6 +45,13 @@
 @property (nonatomic, readonly) NSString *name;
 
 /**
+ * Indicates if this object is secure.
+ *
+ * @return Return true if authentication is required to emit signals or call methods on this object.
+ */
+@property (nonatomic, readonly) BOOL isSecure;
+
+/**
  * AJNBusObject initialization.
  *
  * @param busAttachment  Bus that this object exists on.
@@ -99,6 +106,8 @@
 @property (nonatomic, readonly) NSString *path;
 
 @property (nonatomic, readonly) NSString *name;
+
+@property (nonatomic, readonly) BOOL isSecure;
 
 - (id)initWithPath:(NSString *)path;
 

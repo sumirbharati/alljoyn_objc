@@ -63,6 +63,11 @@ using namespace ajn;
     return [NSString stringWithCString:self.busObject->GetName().c_str() encoding:NSUTF8StringEncoding];
 }
 
+-(BOOL)isSecure
+{
+    return self.busObject->IsSecure() ? YES : NO;
+}
+
 - (id)initWithPath:(NSString*)path
 {
     self = [super init];
