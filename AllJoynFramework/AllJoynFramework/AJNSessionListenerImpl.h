@@ -55,6 +55,15 @@ class AJNSessionListenerImpl : public ajn::SessionListener {
     virtual void SessionLost(ajn::SessionId sessionId);
 
     /**
+     * Called by the bus when an existing session becomes disconnected.
+     *
+     * @param sessionId     Id of session that was lost.
+     * @param reason        The reason for the session being lost
+     *
+     */
+    virtual void SessionLost(ajn::SessionId sessionId, SessionLostReason reason);
+
+    /**
      * Called by the bus when a member of a multipoint session is added.
      *
      * @param sessionId     Id of session whose member(s) changed.

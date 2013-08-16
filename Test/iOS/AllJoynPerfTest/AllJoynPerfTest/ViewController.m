@@ -428,7 +428,6 @@
             }
             [self.performanceStatistics markTransferEndTime];
             [self displayPerformanceStatistics];
-            [self didTouchStartButton:self];
         });
     }
 }

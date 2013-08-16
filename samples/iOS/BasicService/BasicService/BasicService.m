@@ -229,6 +229,15 @@ static const AJNSessionPort kBasicServicePort = 25;
     [self.lostSessionCondition unlock];
 }
 
+
+- (void)sessionWasLost:(AJNSessionId)sessionId forReason:(AJNSessionLostReason)reason
+{
+    NSLog(@"AJNBusListener::sessionWasLost %u forReason:%u", sessionId, reason);
+    [self.lostSessionCondition lock];
+    [self.lostSessionCondition signal];
+    [self.lostSessionCondition unlock];
+}
+
 - (void)didAddMemberNamed:(NSString*)memberName toSession:(AJNSessionId)sessionId
 {
     NSLog(@"AJNBusListener::didAddMemberNamed:%@ toSession:%u", memberName, sessionId);

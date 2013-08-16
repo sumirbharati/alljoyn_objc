@@ -23,6 +23,18 @@
  */
 @protocol AJNSessionListener <NSObject>
 
+/** Reason for the session being lost */
+typedef enum{
+    ALLJOYN_SESSIONLOST_INVALID                      = 0x00, /**< Invalid */
+    ALLJOYN_SESSIONLOST_REMOTE_END_LEFT_SESSION      = 0x01, /**< Remote end called LeaveSession
+                                                              */
+    ALLJOYN_SESSIONLOST_REMOTE_END_CLOSED_ABRUPTLY   = 0x02, /**< Remote end closed abruptly */
+    ALLJOYN_SESSIONLOST_REMOVED_BY_BINDER            = 0x03, /**< Session binder removed this en
+                                                              dpoint by calling RemoveSessionMember */
+    ALLJOYN_SESSIONLOST_LINK_TIMEOUT                 = 0x04, /**< Link was timed-out */
+    ALLJOYN_SESSIONLOST_REASON_OTHER                 = 0x05 /**< Unspecified reason for session loss */
+}AJNSessionLostReason;
+
 @optional
 
 /**
@@ -31,6 +43,15 @@
  * @param sessionId     Id of session that was lost.
  */
 - (void)sessionWasLost:(AJNSessionId)sessionId;
+
+/**
+* Called by the bus when an existing session becomes disconnected.
+*
+* @param sessionId     Id of session that was lost.
+* @param reason        The reason for the session being lost
+*
+*/
+- (void)sessionWasLost:(AJNSessionId)sessionId forReason:(AJNSessionLostReason)reason;
 
 /**
  * Called by the bus when a member of a multipoint session is added.

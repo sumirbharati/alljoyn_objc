@@ -58,6 +58,26 @@ void AJNSessionListenerImpl::SessionLost(SessionId sessionId)
 }
 
 /**
+ * Called by the bus when an existing session becomes disconnected.
+ *
+ * @param sessionId     Id of session that was lost.
+ * @param reason        The reason for the session being lost
+ *
+ */
+void AJNSessionListenerImpl::SessionLost(SessionId sessionId, SessionLostReason reason)
+{
+    @autoreleasepool {
+        if ([m_delegate respondsToSelector:@selector(sessionWasLost:forReason:)]) {
+            __block id<AJNSessionListener> theDelegate = m_delegate;
+            dispatch_queue_t queue = dispatch_get_main_queue();
+            dispatch_async(queue, ^{
+                [theDelegate sessionWasLost:sessionId forReason:(AJNSessionLostReason)reason];
+            });
+        }
+    }
+}
+
+/**
  * Called by the bus when a member of a multipoint session is added.
  *
  * @param sessionId     Id of session whose member(s) changed.

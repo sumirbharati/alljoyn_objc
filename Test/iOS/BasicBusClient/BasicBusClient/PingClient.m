@@ -233,9 +233,9 @@ static PingClient *s_sharedInstance;
 
 #pragma mark - AJNSessionListener delegate methods
 
-- (void)sessionWasLost:(AJNSessionId)sessionId
+- (void)sessionWasLost:(AJNSessionId)sessionId forReason:(AJNSessionLostReason)reason
 {
-    NSString *message = [NSString stringWithFormat:@"PingClient::sessionWasLost:%u", sessionId];
+    NSString *message = [NSString stringWithFormat:@"PingClient::sessionWasLost:%u forReason %u", sessionId, reason];
     NSLog(@"%@", message);
     [self.delegate receivedStatusMessage:message];
 }

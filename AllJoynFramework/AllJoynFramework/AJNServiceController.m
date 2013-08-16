@@ -343,12 +343,12 @@
 
 #pragma mark - AJNSessionListener delegate methods
 
-- (void)sessionWasLost:(AJNSessionId)sessionId
+- (void)sessionWasLost:(AJNSessionId)sessionId forReason:(AJNSessionLostReason)reason
 {
-    NSString *message = [NSString stringWithFormat:@"AJNServiceController::sessionWasLost:%u", sessionId];
+    NSString *message = [NSString stringWithFormat:@"AJNServiceController::sessionWasLost:%u forReason:%u", sessionId, reason];
     NSLog(@"%@", message);
     [self sendStatusMessage:message];
-    if ([self.delegate respondsToSelector:@selector(sessionWasLost:)]) {
+    if ([self.delegate respondsToSelector:@selector(sessionWasLost:forReason:)]) {
         [self.delegate sessionWasLost:sessionId];
     }
 }

@@ -292,9 +292,9 @@ static const AJNSessionPort kBasicClientServicePort = 25;
 
 #pragma mark - AJNSessionListener methods
 
-- (void)sessionWasLost:(AJNSessionId)sessionId
+- (void)sessionWasLost:(AJNSessionId)sessionId forReason:(AJNSessionLostReason)reason
 {
-    NSLog(@"AJNBusListener::sessionWasLost %u", sessionId);
+    NSLog(@"AJNBusListener::sessionWasLost %u forReason %u", sessionId, reason);
 }
 
 - (void)didAddMemberNamed:(NSString*)memberName toSession:(AJNSessionId)sessionId

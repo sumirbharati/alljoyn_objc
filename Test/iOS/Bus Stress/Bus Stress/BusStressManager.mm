@@ -214,9 +214,9 @@ static BOOL s_stopStressFlag;
 
 #pragma mark - AJNSessionListener methods
 
-- (void)sessionWasLost:(AJNSessionId)sessionId
+- (void)sessionWasLost:(AJNSessionId)sessionId forReason:(AJNSessionLostReason)reason
 {
-    NSLog(@"AJNBusListener::sessionWasLost %u", sessionId);
+    NSLog(@"AJNBusListener::sessionWasLost %u forReason %u", sessionId, reason);
 
     [self.lostSessionCondition lock];
     [self.lostSessionCondition signal];
